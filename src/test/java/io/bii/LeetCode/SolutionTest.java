@@ -30,4 +30,10 @@ class SolutionTest {
     void floodFill() {
         //[[1,1,1],[1,1,0],[1,0,1]], sr = 1, sc = 1, newColor = 2
     }
+
+    @Test
+    void maxAreaOfIsland() {
+        assertEquals(6, solution.maxAreaOfIsland(new int[][]{{0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0}, {0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0}, {0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0}, {0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0}}));
+        assertEquals(1, solution.maxAreaOfIsland(new int[][]{{0, 1}}));
+    }
 }

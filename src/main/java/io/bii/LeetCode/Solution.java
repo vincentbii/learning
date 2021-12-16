@@ -26,6 +26,59 @@ class Node {
 
 class Solution {
 
+    /**
+     * You are given an m x n binary matrix grid. An island is a group of 1's (representing land) connected 4-directionally (horizontal or vertical.)
+     * You may assume all four edges of the grid are surrounded by water.
+     * <p>
+     * The area of an island is the number of cells with a value 1 in the island.
+     * <p>
+     * Return the maximum area of an island in grid. If there is no island, return 0.
+     *
+     * @param grid
+     * @return int
+     */
+    public int maxAreaOfIsland(int[][] grid) {
+
+        int max = 0;
+        int rl = grid.length;
+        int cl = grid[0].length;
+        boolean[][] visited = new boolean[rl][cl];
+        int[][] paths = new int[][]{{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+        for (int i = 0; i < rl; i++) {
+            for (int j = 0; j < cl; j++) {
+                if (grid[i][j] == 0) continue;
+                if (visited[i][j]) continue;
+                max = Math.max(max, maxAreaOfIslandUtil(grid, visited, i, j, paths, rl, cl));
+            }
+        }
+
+        return max;
+
+    }
+
+    private int maxAreaOfIslandUtil(int[][] grid, boolean[][] visited, int i, int j, int[][] paths, int rl, int cl) {
+
+        if (visited[i][j]) return 0;
+        if (grid[i][j] == 0) return 0;
+        visited[i][j] = true;
+
+        int sum = 1;
+
+        for (int[] path : paths) {
+
+            int x = i + path[0];
+            int y = j + path[1];
+
+            if (x < 0 || x >= rl || y < 0 || y >= cl || grid[x][y] == 0 || visited[x][y]) continue;
+
+            sum += maxAreaOfIslandUtil(grid, visited, x, y, paths, rl, cl);
+
+        }
+
+        return sum;
+
+    }
+
     public int[][] floodFill_(int[][] image, int sr, int sc, int newColor) {
 
         int rl = image.length;
